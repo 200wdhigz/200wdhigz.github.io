@@ -8,37 +8,63 @@
   <p>Trwa przekierowanie...</p>
   
   <script>
-    // 1. Zdefiniuj wzorzec ścieżki, którego szukamy
-    const pathPattern = '/sprzet/';
+    // --- Konfiguracja ---
+    // 1. Zmienne domen
+    const defaultDomain = 'https://wola.zhp.pl';
+    const devDomain = 'http://localhost';
+    // Ważne: Jeśli Twój lokalny serwer działa na innym porcie,
+    // zmień powyższą linię, np. na 'http://localhost:3000'
     
-    // 2. Pobierz aktualną ścieżkę (np. /sprzet/DD03)
+    // 2. Lista ścieżek, które mają być przekierowane.
+    const redirectPatterns = ['/sprzet/', '/usterka/'];
+    
+    // 3. Sprawdź parametry URL, aby ustawić właściwą domenę
+    const params = new URLSearchParams(window.location.search);
+    
+    let targetDomain;
+    if (params.has('dev')) {
+      // Jeśli URL zawiera '?dev', '?dev=true' lub cokolwiek,
+      // użyj domeny deweloperskiej.
+      targetDomain = devDomain;
+    } else {
+      targetDomain = defaultDomain;
+    }
+    // --- Koniec Konfiguracji ---
+
+    
+    // 4. Pobierz aktualną ścieżkę z adresu URL
+    //    np. "/sprzet/DD03"
     const path = window.location.pathname;
     
-    // 3. Sprawdź, czy ścieżka zaczyna się od naszego wzorca
-    //    Używamy .toLowerCase(), aby działało też dla /Sprzet/DD03
-    if (path.toLowerCase().startsWith(pathPattern)) {
+    // 5. Stwórz wersję ścieżki z małymi literami do porównań
+    const lowerPath = path.toLowerCase();
+
+    // 6. Przejdź przez każdy wzorzec z listy
+    for (const pattern of redirectPatterns) {
     
-      // 4. Wytnij ID sprzętu ze ścieżki (czyli tekst po /sprzet/)
-      const sprzetId = path.substring(pathPattern.length);
+      // 7. Sprawdź, czy ścieżka (małymi literami) zaczyna się od wzorca
+      if (lowerPath.startsWith(pattern)) {
       
-      // 5. Sprawdź, czy ID nie jest puste
-      if (sprzetId) {
-        // 6. Ustaw docelowy adres bazowy
-        const baseUrl = 'http://127.0.0.1:5000/sprzet/';
+        // 8. Sprawdź, czy po wzorcu jest jeszcze jakiś tekst (ID)
+        if (path.length > pattern.length) {
         
-        // 7. Stwórz pełny adres docelowy
-        //    Tutaj nie używamy .toUpperCase(), bo zakładamy,
-        //    że wielkość liter w ścieżce jest już poprawna (np. DD03)
-        const targetUrl = baseUrl + sprzetId;
-        
-        // 8. Przekieruj użytkownika
-        window.location.href = targetUrl;
+          // 9. Stwórz pełny docelowy URL
+          const targetUrl = targetDomain + path;
+          
+          // 10. Przekieruj użytkownika
+          window.location.href = targetUrl;
+          
+          // 11. Zatrzymaj dalsze sprawdzanie
+          break;
+        }
       }
     }
-    // Jeśli ścieżka nie pasuje (np. /inne/cos), użytkownik
-    // po prostu zobaczy napis "Trwa przekierowanie..." lub 
-    // standardową stronę błędu 404 (jeśli ją tu dodasz).
     
+    const targetUrl = targetDomain;
+          
+          // 10. Przekieruj użytkownika
+    window.location.href = targetUrl;
+
   </script>
 </body>
 </html>
