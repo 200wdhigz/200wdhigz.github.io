@@ -1,64 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <title>Przekierowanie...</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Przekierowanie...</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
-  <p>Trwa przekierowanie...</p>
-  
-  <script>
-    // --- Konfiguracja ---
-    // 1. Zmienne domen
-    const defaultDomain = 'https://wola.zhp.pl';
-    const devDomain = 'http://127.0.0.1:5000';
-    
-    // 2. Lista ścieżek, które mają być przekierowane.
-    const redirectPatterns = ['/sprzet/', '/usterka/'];
-    
-    // 3. Sprawdź parametry URL, aby ustawić właściwą domenę
-    const params = new URLSearchParams(window.location.search);
-    
-    let targetDomain;
-    if (params.has('dev')) {
-      targetDomain = devDomain;
-    } else {
-      targetDomain = defaultDomain;
-    }
-    // --- Koniec Konfiguracji ---
+<body class="d-flex flex-column h-100">
+<div class="container main-content">
+    <div class="d-flex align-items-center align-items-center vh-100">
+        <h2 role="status">Trwa przekierowanie...</h2>
+        <div class="spinner-border ms-auto" style="width: 3rem; height: 3rem;" aria-hidden="true"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
-    
-    // 4. Pobierz aktualną ścieżkę z adresu URL
-    const path = window.location.pathname;
-    
-    // 5. Stwórz wersję ścieżki z małymi literami do porównań
-    const lowerPath = path.toLowerCase();
+<!--<script>-->
+<!--    // -&#45;&#45; Konfiguracja -&#45;&#45;-->
+<!--    // 1. Zmienne domen-->
+<!--    const defaultDomain = 'https://wola.zhp.pl';-->
+<!--    const devDomain = 'http://127.0.0.1:5000';-->
 
-    // 6. Przejdź przez każdy wzorzec z listy
-    for (const pattern of redirectPatterns) {
-    
-      // 7. Sprawdź, czy ścieżka (małymi literami) zaczyna się od wzorca
-      if (lowerPath.startsWith(pattern)) {
-      
-        // 8. Sprawdź, czy po wzorcu jest jeszcze jakiś tekst (ID)
-        if (path.length > pattern.length) {
-        
-          // 9. Stwórz pełny docelowy URL
-          const targetUrl = targetDomain + path;
-          
-          // 10. Przekieruj użytkownika
-          window.location.href = targetUrl;
-          
-          // 11. Zatrzymaj dalsze sprawdzanie
-          break;
-        }
-      }
-    }
-    
-    const targetUrl = targetDomain;
-          
-    window.location.href = targetUrl;
+<!--    // 2. Lista ścieżek, które mają być przekierowane.-->
+<!--    const redirectPatterns = ['/sprzet/', '/usterka/'];-->
 
-  </script>
+<!--    // 3. Sprawdź parametry URL, aby ustawić właściwą domenę-->
+<!--    const params = new URLSearchParams(window.location.search);-->
+
+<!--    let targetDomain;-->
+<!--    if (params.has('dev')) {-->
+<!--        targetDomain = devDomain;-->
+<!--    } else {-->
+<!--        targetDomain = defaultDomain;-->
+<!--    }-->
+<!--    // -&#45;&#45; Koniec Konfiguracji -&#45;&#45;-->
+
+
+<!--    // 4. Pobierz aktualną ścieżkę z adresu URL-->
+<!--    const path = window.location.pathname;-->
+
+<!--    // 5. Stwórz wersję ścieżki z małymi literami do porównań-->
+<!--    const lowerPath = path.toLowerCase();-->
+
+<!--    // 6. Przejdź przez każdy wzorzec z listy-->
+<!--    for (const pattern of redirectPatterns) {-->
+
+<!--        // 7. Sprawdź, czy ścieżka (małymi literami) zaczyna się od wzorca-->
+<!--        if (lowerPath.startsWith(pattern)) {-->
+
+<!--            // 8. Sprawdź, czy po wzorcu jest jeszcze jakiś tekst (ID)-->
+<!--            if (path.length > pattern.length) {-->
+
+<!--                // 9. Stwórz pełny docelowy URL-->
+<!--                const targetUrl = targetDomain + path;-->
+
+<!--                // 10. Przekieruj użytkownika-->
+<!--                window.location.href = targetUrl;-->
+
+<!--                // 11. Zatrzymaj dalsze sprawdzanie-->
+<!--                break;-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+
+<!--    const targetUrl = targetDomain;-->
+
+<!--    window.location.href = targetUrl;-->
+
+<!--</script>-->
 </body>
 </html>
