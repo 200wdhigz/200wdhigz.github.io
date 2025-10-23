@@ -12,8 +12,6 @@
     // 1. Zmienne domen
     const defaultDomain = 'https://wola.zhp.pl';
     const devDomain = 'http://127.0.0.1:5000';
-    // Ważne: Jeśli Twój lokalny serwer działa na innym porcie,
-    // zmień powyższą linię, np. na 'http://localhost:3000'
     
     // 2. Lista ścieżek, które mają być przekierowane.
     const redirectPatterns = ['/sprzet/', '/usterka/'];
@@ -23,8 +21,6 @@
     
     let targetDomain;
     if (params.has('dev')) {
-      // Jeśli URL zawiera '?dev', '?dev=true' lub cokolwiek,
-      // użyj domeny deweloperskiej.
       targetDomain = devDomain;
     } else {
       targetDomain = defaultDomain;
@@ -33,7 +29,6 @@
 
     
     // 4. Pobierz aktualną ścieżkę z adresu URL
-    //    np. "/sprzet/DD03"
     const path = window.location.pathname;
     
     // 5. Stwórz wersję ścieżki z małymi literami do porównań
@@ -62,7 +57,6 @@
     
     const targetUrl = targetDomain;
           
-          // 10. Przekieruj użytkownika
     window.location.href = targetUrl;
 
   </script>
