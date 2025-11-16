@@ -18,58 +18,58 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
-<!--<script>-->
-<!--    // -&#45;&#45; Konfiguracja -&#45;&#45;-->
-<!--    // 1. Zmienne domen-->
-<!--    const defaultDomain = 'https://wola.zhp.pl';-->
-<!--    const devDomain = 'http://127.0.0.1:5000';-->
+<script>
+    // --- Konfiguracja ---
+    // 1. Zmienne domen
+    const defaultDomain = 'https://wola.zhp.pl';
+    const devDomain = 'http://127.0.0.1:5000';
 
-<!--    // 2. Lista ścieżek, które mają być przekierowane.-->
-<!--    const redirectPatterns = ['/sprzet/', '/usterka/'];-->
+    // 2. Lista ścieżek, które mają być przekierowane.
+    const redirectPatterns = ['/sprzet/', '/usterka/'];
 
-<!--    // 3. Sprawdź parametry URL, aby ustawić właściwą domenę-->
-<!--    const params = new URLSearchParams(window.location.search);-->
+    // 3. Sprawdź parametry URL, aby ustawić właściwą domenę
+    const params = new URLSearchParams(window.location.search);
 
-<!--    let targetDomain;-->
-<!--    if (params.has('dev')) {-->
-<!--        targetDomain = devDomain;-->
-<!--    } else {-->
-<!--        targetDomain = defaultDomain;-->
-<!--    }-->
-<!--    // -&#45;&#45; Koniec Konfiguracji -&#45;&#45;-->
+    let targetDomain;
+    if (params.has('dev')) {
+        targetDomain = devDomain;
+    } else {
+        targetDomain = defaultDomain;
+    }
+    // --- Koniec Konfiguracji ---
 
 
-<!--    // 4. Pobierz aktualną ścieżkę z adresu URL-->
-<!--    const path = window.location.pathname;-->
+    // 4. Pobierz aktualną ścieżkę z adresu URL
+    const path = window.location.pathname;
 
-<!--    // 5. Stwórz wersję ścieżki z małymi literami do porównań-->
-<!--    const lowerPath = path.toLowerCase();-->
+    // 5. Stwórz wersję ścieżki z małymi literami do porównań
+    const lowerPath = path.toLowerCase();
 
-<!--    // 6. Przejdź przez każdy wzorzec z listy-->
-<!--    for (const pattern of redirectPatterns) {-->
+    // 6. Przejdź przez każdy wzorzec z listy
+    for (const pattern of redirectPatterns) {
 
-<!--        // 7. Sprawdź, czy ścieżka (małymi literami) zaczyna się od wzorca-->
-<!--        if (lowerPath.startsWith(pattern)) {-->
+        // 7. Sprawdź, czy ścieżka (małymi literami) zaczyna się od wzorca
+        if (lowerPath.startsWith(pattern)) {
 
-<!--            // 8. Sprawdź, czy po wzorcu jest jeszcze jakiś tekst (ID)-->
-<!--            if (path.length > pattern.length) {-->
+            // 8. Sprawdź, czy po wzorcu jest jeszcze jakiś tekst (ID)
+            if (path.length > pattern.length) {
 
-<!--                // 9. Stwórz pełny docelowy URL-->
-<!--                const targetUrl = targetDomain + path;-->
+                // 9. Stwórz pełny docelowy URL
+                const targetUrl = targetDomain + path;
 
-<!--                // 10. Przekieruj użytkownika-->
-<!--                window.location.href = targetUrl;-->
+                // 10. Przekieruj użytkownika
+                window.location.href = targetUrl;
 
-<!--                // 11. Zatrzymaj dalsze sprawdzanie-->
-<!--                break;-->
-<!--            }-->
-<!--        }-->
-<!--    }-->
+                // 11. Zatrzymaj dalsze sprawdzanie
+                break;
+            }
+        }
+    }
 
-<!--    const targetUrl = targetDomain;-->
+    const targetUrl = targetDomain;
 
-<!--    window.location.href = targetUrl;-->
+    window.location.href = targetUrl;
 
-<!--</script>-->
+</script>
 </body>
 </html>
